@@ -7,28 +7,20 @@
 
 /*
 I developed this game on My Machine, but it has to work on other's as well :) 
-I dont know a good way to scale game,
-I want to keep size of vehicle and terrain almost same on all screen sizes,
-background should scale with screen size, or else clouds will not be visible
+so resize is handled by keeping height constant and filling blank space with width
 */
-//const logical_height = 864; 
+const logical_width = 1536;
+const logical_height = 864;
 
 
-var screen_width = 1536;
-const screen_height = 864;
-
-
-const deviceAspectRatio = window.screen.width/window.screen.height;
+var deviceAspectRatio = window.innerWidth/window.innerHeight;
 ///extra width is margin which will be added to width so that the aspect ratio matches
-const extraWidth =  Math.round((deviceAspectRatio*screen_height) - screen_width);
+var extraWidth =  Math.round((deviceAspectRatio*logical_height) - logical_width);
 
-screen_width += extraWidth;
+var screen_width = logical_width + extraWidth;
+var screen_height = logical_height;
 
-//console.log('extraWidth ' + extraWidth);
-
-
-//const game_scale = screen_height/logical_height;
-//console.log(game_scale);
+//console.log('window size init ' + screen_width + ' ' + screen_height);
 
 const world_width = 10*screen_width;
 const world_height = 2*screen_height;
@@ -42,6 +34,7 @@ var tilesetFileName;
 var chunkloader, map, tiles;
 var cursors;
 var backgroundloader;
+
 
 
 

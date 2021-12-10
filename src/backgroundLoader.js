@@ -69,8 +69,7 @@ class BackgroundLoader
 
     applyBackground(scene)
     {
-        let w = scene.scale.width;
-        let h = scene.scale.height;
+        let h = scene.scale.height; ///height is const throught the game
         this.layers.forEach((layer, idx) =>{
 
             this.layers[idx].queue = []; ///queue
