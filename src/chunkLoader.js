@@ -12,7 +12,17 @@ class ChunkLoader
         this.chunk = [
             new Chunk('chunk1', {width: 32*this.chunkTWidth}),
             new Chunk('chunk2', {width: 32*this.chunkTWidth})
-        ];
+        ];//acts like a circular buffer with two chunks
+    }
+
+    setWorldBorderHelper(scene, leftChunk, rightChunk)
+    {
+        scene.matter.world.setBounds(
+            leftChunk.coordX, 
+            leftChunk.coordY - leftChunk.height, 
+            rightChunk.endCoordX(), 
+            rightChunk.coordY + 2*rightChunk.height
+        );
     }
     
     setCollisonTileHelper(layer, scene)
@@ -31,6 +41,8 @@ class ChunkLoader
 
         this.setCollisonTileHelper(this.chunk[0].layer, scene);
         this.setCollisonTileHelper(this.chunk[1].layer, scene);
+
+        this.setWorldBorderHelper(scene, this.chunk[0], this.chunk[1]);
     }
 
     ///call this in update(), handle swapping chunks with help of vehicleCoords
@@ -38,10 +50,14 @@ class ChunkLoader
     {
         if(vehicleCoordX > this.chunk[this.currid].endCoordX() + this.processChunkRelaxation)
         {    
-            this.chunk[this.currid].destroyChunk();
-            this.chunk[this.currid].nextChunk(this.chunk[1-this.currid], tilemap, tileset);
+            this.chunk[this.currid].destroyChunk(); //left most chunk
+            this.chunk[this.currid].nextChunk(this.chunk[1-this.currid], tilemap, tileset); //put left chunk on right most side
             this.setCollisonTileHelper(this.chunk[this.currid].layer, scene);
-            this.currid = 1-this.currid;
+
+            this.currid = 1-this.currid; //change chunk index
+            
+            this.setWorldBorderHelper(scene, this.chunk[this.currid], this.chunk[1-this.currid]);
+        
         }
     }
 
