@@ -23,21 +23,22 @@ class Vehicle
             collisionFilter:{category:0x10}
         };
         let posX = 1000, posY = 0;
+        
         this.body = scene.matter.add.image(posX + 75, posY, 'body-img', 'body', body_prop);
         this.w1 = scene.matter.add.image(posX, posY, 'wheel-img', 'wheel', wheel_prop);
         this.w2 = scene.matter.add.image(posX + 150, posY, 'wheel-img', 'wheel', wheel_prop);
 
-        this.wheel_torque = 0.105;
-        this.stiffness = 0.95;
+        this.wheel_torque = 0.035;
+        this.stiffness = 0.05;
         this.damping = 0.1;
         
         scene.matter.add.joint(this.w1, this.body, 0, this.stiffness, {
-            pointB:{x:-50,y:20},
+            pointB:{x:-30,y:20},
             //stiffness: 0.01,
             damping: this.damping 
         });
         scene.matter.add.joint(this.w2, this.body, 0, this.stiffness, {
-            pointB:{x:90,y:15},
+            pointB:{x:30,y:20},
             //stiffness: 0.01,
             damping: this.damping 
         });

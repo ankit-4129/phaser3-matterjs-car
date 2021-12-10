@@ -57,17 +57,14 @@ function drawTerrain(stepMap, layer, param)
         h: param.h ?? 500, //chunk height (height of layer)
         w: param.w ?? 2000, //chunk max width
         y: param.y ?? 500/2, //y coord to start on screen
-        amp: param.amp ?? 300, //amplitude
-        wl: param.wl ?? tileSize*10, //wavelength
+        amp: param.amp ?? tileSize*10, //amplitude
+        wl: param.wl ?? tileSize*5, //wavelength
         startFrac: param.startFrac ?? srand.frac(), //starting tile
         cummCoord: param.cummCoord ?? 0, //cummulative 'p'
         startCurr: param.startCurr ?? 0, //start curr 'curr'
         upperBound: param.upperBound ?? tileSize*10, // how many tiles above can terrain go,
         lowerBound: param.lowerBound ?? tileSize*10, //how many tiles below can terrain go
     };
-
-    param.amp *= 5; //amplitude randomizer
-    param.wl *= 1; //wavelength randomizer
 
     //return this paramaeters for creating next continuouse chunk
     let endParam = {
@@ -79,6 +76,7 @@ function drawTerrain(stepMap, layer, param)
 
     let a = param.startFrac,
         b = 0,
+        wl = param.wl,
         x = param.x, 
         height = []; //stores y for each point , use this to select tile
     let limitFlag = true;
@@ -91,7 +89,7 @@ function drawTerrain(stepMap, layer, param)
             graphics.fillCircle(x, param.h + param.amp*a, 8);
         }
 
-        let istep = 1/(param.wl/tileSize);
+        let istep = 1/(wl/tileSize);
         for(let i=0; i<=1; i += istep)
         {
             let ip = interpolate(a, b, i);
@@ -105,13 +103,14 @@ function drawTerrain(stepMap, layer, param)
             if(curve_debug)
             {
                 graphics.fillStyle(0x4d76ff, 1);
-                graphics.fillCircle(x + i*param.wl, param.h + param.amp*ip, 1);
+                graphics.fillCircle(x + i*wl,  100 + param.amp*ip, 8);
             }
             
         }
-        x += param.wl;
+        x += wl;
         a = b;
         b = srand.frac();
+        //b = (Math.cos(2*x/wl) + Math.cos(3.14*x/wl))/1.414;
     }
 
     var mag = [0];

@@ -13,6 +13,7 @@ var config = {
     },
     
     
+    
     backgroundColor: '#4488aa',
     
     physics: {
@@ -21,7 +22,7 @@ var config = {
             gravity: {
                 y: 1
             },
-            debug: true
+            debug: false
         }
     },
 
@@ -57,8 +58,8 @@ function preload ()
     this.load.image('wheel-img', '../assets/small_wheel.png');
     this.load.json('wheel', '../assets/small_wheel.json');
 
-    this.load.image('body-img', '../assets/car_body.png');
-    this.load.json('body', '../assets/car_body2.json');
+    this.load.image('body-img', '../assets/car_body_1.png');
+    this.load.json('body', '../assets/car_body.json');
     //tilesetFileName = 'land16x16';
     // this.load.image(tilesetFileName, 'assets/land16x16.png');
     // this.load.tilemapTiledJSON('tilemap', 'assets/land_tilemap16x16.json');
@@ -79,6 +80,10 @@ function create ()
     var FKey = this.input.keyboard.addKey('F');
     FKey.on('down', function () {
         this.scale.toggleFullscreen();
+    }, this);
+    var DKey = this.input.keyboard.addKey('D');
+    DKey.on('down', function () {
+        console.log(game.loop.actualFps);
     }, this);
 
     ///setBounds( [x] [, y] [, width] [, height] [, thickness] [, left] [, right] [, top] [, bottom])
@@ -105,7 +110,7 @@ function create ()
 
 function update()
 {
-
+    
     vehicle.processKey(cursors);
     chunkloader.processChunk(this, map, tiles, vehicle.body.x);
     backgroundloader.updateBackground(this, vehicle.body.x);

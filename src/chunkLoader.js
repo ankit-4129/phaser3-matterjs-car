@@ -15,14 +15,22 @@ class ChunkLoader
         ];//acts like a circular buffer with two chunks
     }
 
+    /**
+     * sets physic world bounds and also main camera bounds
+     * @param {Phaser.Game} scene 
+     * @param {Chunk} leftChunk 
+     * @param {Chunk} rightChunk 
+     */
     setWorldBorderHelper(scene, leftChunk, rightChunk)
     {
-        scene.matter.world.setBounds(
+        let bounds = [
             leftChunk.coordX, 
             leftChunk.coordY - leftChunk.height, 
             rightChunk.endCoordX(), 
             rightChunk.coordY + 2*rightChunk.height
-        );
+        ];
+        scene.matter.world.setBounds(...bounds);
+        scene.cameras.main.setBounds(...bounds);
     }
     
     setCollisonTileHelper(layer, scene)

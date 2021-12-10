@@ -27,7 +27,7 @@ const world_height = 2*screen_height;
 
 var game;
 
-var srand = new Phaser.Math.RandomDataGenerator('10000');
+var srand = new Phaser.Math.RandomDataGenerator();
 var graphics;
 var vehicle;
 var tilesetFileName;
