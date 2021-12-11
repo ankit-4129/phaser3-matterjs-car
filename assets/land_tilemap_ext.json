@@ -64,7 +64,12 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
+                         "type":"string",
+                         "value":"0_32"
+                        }, 
+                        {
+                         "name":"stepY",
                          "type":"string",
                          "value":"0_0"
                         }]
@@ -113,9 +118,14 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"32_0"
+                         "value":"0_32"
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":"0_-32"
                         }]
                 }, 
                 {
@@ -162,7 +172,12 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
+                         "type":"string",
+                         "value":"0_32"
+                        }, 
+                        {
+                         "name":"stepY",
                          "type":"string",
                          "value":"0_32"
                         }]
@@ -215,9 +230,14 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"16_0"
+                         "value":"0_32"
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":"16_-16"
                         }]
                 }, 
                 {
@@ -227,6 +247,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -273,9 +303,14 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"32_16"
+                         "value":"0_32"
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":"0_-16"
                         }]
                 }, 
                 {
@@ -285,6 +320,30 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
+                        }]
+                }, 
+                {
+                 "id":7,
+                 "properties":[
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -294,6 +353,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -303,6 +372,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -312,6 +391,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -321,6 +410,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -330,6 +429,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -339,6 +448,30 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
+                        }]
+                }, 
+                {
+                 "id":14,
+                 "properties":[
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -372,7 +505,12 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
+                         "type":"string",
+                         "value":"0_32"
+                        }, 
+                        {
+                         "name":"stepY",
                          "type":"string",
                          "value":"16_16"
                         }]
@@ -384,6 +522,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -393,6 +541,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -443,9 +601,14 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"0_16"
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -455,6 +618,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -501,9 +674,28 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"16_32"
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
+                        }]
+                }, 
+                {
+                 "id":21,
+                 "properties":[
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -513,6 +705,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -522,6 +724,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -531,6 +743,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -540,6 +762,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -549,6 +781,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -558,6 +800,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -569,9 +821,14 @@
                          "value":false
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"x_32"
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -583,9 +840,14 @@
                          "value":false
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"32_x"
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -640,9 +902,14 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"48_16_1"
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -697,9 +964,14 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"-16_16_2"
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -746,9 +1018,14 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"48_16_2"
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -758,6 +1035,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -804,9 +1091,14 @@
                          "value":true
                         }, 
                         {
-                         "name":"step",
+                         "name":"stepX",
                          "type":"string",
-                         "value":"-16_16_1"
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -816,6 +1108,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -825,6 +1127,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -834,6 +1146,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -843,6 +1165,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -852,6 +1184,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -861,6 +1203,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }, 
                 {
@@ -870,6 +1222,16 @@
                          "name":"colliders",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"stepX",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"stepY",
+                         "type":"string",
+                         "value":""
                         }]
                 }],
          "tilewidth":32,

@@ -69,7 +69,7 @@ function drawTerrain(stepMap, layer, param)
     
     let height = NoiseGenerator.getCurve()(param, tileSize);
 
-    var mag = [0];
+    var terrainV = [];
     //approx p to nearest slope
     for(let i=1, p, minyidx, approx = [-32, -16, 0, 16, 32], cummCoord = param.cummCoord; i<height.length; i++)
     {
@@ -81,97 +81,76 @@ function drawTerrain(stepMap, layer, param)
         });
         p = boundTerrainHelper(cummCoord, minyidx, approx, param.upperBound, param.lowerBound);
         cummCoord += p;
-        mag.push(p);
+        terrainV.push([32, p]);
     }
 
     if(debug)
-        console.log(mag);
+        console.log(terrainV);
     
-    let p = param.cummCoord ?? 0, curr = param.startCurr ?? 0;
     let yCoordOffset = param.y + param.h/2;
+    let p = param.cummCoord ?? 0, curr = param.startCurr ?? 0;
     
-    for(let i=1;i<mag.length; i++)
+    let px = 0, py = p;
+    
+    stepMap = {
+        'fill': 15,
+        '0_32_0_0': [1, 15],
+        '0_32_0_-32': [2, 30],
+        '0_32_0_16': [19, 15],
+        '0_32_0_32': [3, 29],
+        '0_32_0_-16': [6, 30],
+        '0_32_16_0': [4, 15],
+        '0_32_16_32': [21, 29],
+        '0_32_16_16': [16, 15],
+        '0_32_16_48': [35, 32],
+        '0_32_16_-16': [33, 31],
+    };
+
+    let xCoord = param.x,
+        yCoord = yCoordOffset + curr, 
+        yTileCount = param.h/tileSize;
+    
+    for(let i=0; i<terrainV.length; i++)
     {
         //genration rule for this tileset
-        {
-            //console.log('p '+p);
-            let hp = curr%tileSize;
-            let hps = hp + mag[i];
-            if(hps < 0)
-            {
-                hp += tileSize;
-                hps += tileSize;
-            }
-            else if(hps > tileSize)
-            {
-                hps -= tileSize;
-                hp -= tileSize;
-            }
-            
-            curr = hps;
+        
+        let posX = px%tileSize != 0;
+        let posY = py%tileSize != 0;
+        let v = terrainV[i];
+        px += v[0];
+        py += v[1];
 
-            let sign = 0;
-            if(mag[i]!=0)
-            {
-                sign = mag[i] < 0 ? -1 : 1;
-            }
-            let ystep = Math.floor((mag[i]+p - sign)/tileSize);
-            let key = hp + '_' + hps;
+        let xKey = (posX*16) + '_' + (posX*16 + v[0]);
+        let yKey = (posY*16) + '_' + (posY*16 + v[1]);
 
-            let xCoord = param.x + tileSize*(i-1),
-                yCoord = yCoordOffset + ystep*tileSize,
-                yTileCount = param.h/tileSize;
-            
-            let tileCoord = layer.worldToTileXY(xCoord, yCoord);
-            let xTCoord = tileCoord.x,
-                yTCoord = tileCoord.y;
-            
-            if(key == '48_16')
-            {
-                layer.putTileAt(stepMap[key+'_1'], xTCoord, yTCoord + 1);
-                layer.putTileAt(stepMap[key+'_2'], xTCoord, yTCoord);
-            }
-            else if(key == '-16_16')
-            {
-                layer.putTileAt(stepMap[key+'_1'], xTCoord, yTCoord - 1);
-                layer.putTileAt(stepMap[key+'_2'], xTCoord, yTCoord);
+        let key = xKey + '_' + yKey;
+        // console.log(key + ' ' + stepMap[key]);
 
-                layer.putTileAt(15, xTCoord, yTCoord + 1);
-            }
-            else if(key == '32_0' || key == '32_16')
-            {
-                layer.putTileAt(stepMap[key], xTCoord, yTCoord);
-                layer.putTileAt(stepMap['32_x'], xTCoord, yTCoord + 1);
-            }
-            else if(key == '0_32' || key == '16_32')
-            {
-                layer.putTileAt(stepMap[key], xTCoord, yTCoord);
-                layer.putTileAt(stepMap['x_32'], xTCoord, yTCoord + 1);
-            }
-            else
-            {
-                layer.putTileAt(stepMap[key], xTCoord, yTCoord);
-                layer.putTileAt(15, xTCoord, yTCoord + 1);
-            }
-            
-            //this fill tile should not have matter body this is just for filling void with tiles
-            layer.fill(15, xTCoord, yTCoord+2, 1, yTileCount - yTCoord - 2);
-
-            if(debug)
-            {
-                let undFlag = (stepMap[key] === undefined);
-                console.log(i + ' ' + mag[i] + ' ' + key + ' ' + undFlag);
-            }
-        }
-        p += mag[i];
+        yCoord += (v[1] > 0)? 0 : v[1];
         
         if(curve_debug)
         {
             graphics.fillStyle(0xff6340, 1);
-            graphics.fillCircle(param.x + tileSize*i, 640 + p, 2);
+            graphics.fillCircle(xCoord, yCoord, 5);
         }
-    }
+        
 
+        let tileCoord = layer.worldToTileXY(xCoord, yCoord);
+        let xTCoord = tileCoord.x,
+            yTCoord = tileCoord.y;
+        
+        for(let j=0; j<stepMap[key].length; j++)
+            layer.putTileAt(stepMap[key][j], xTCoord, yTCoord+j);
+        
+        //fill
+        for(let j=stepMap[key].length; j<yTileCount-yTCoord; j++)
+            layer.putTileAt(stepMap['fill'], xTCoord, yTCoord+j);
+
+        xCoord += v[0];
+        yCoord += (v[1] > 0)? v[1] : 0;
+        
+    }
+    
     if(bound_debug)
     {
         ///base line
@@ -199,10 +178,10 @@ function drawTerrain(stepMap, layer, param)
             )
         ).setDepth(99);
     }
-
-    endParam.endCurr = curr;
-    endParam.cummCoord = p;
-    endParam.tileCount = mag.length - 1;
+    
+    endParam.endCurr = yCoord - yCoordOffset;
+    endParam.cummCoord = py;
+    endParam.tileCount = terrainV.length;
 
     //endParam can be used to create next chunk
     return endParam;
