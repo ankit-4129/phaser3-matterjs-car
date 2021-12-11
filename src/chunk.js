@@ -44,7 +44,6 @@ class Chunk
         this.width = param.width ??  32*100;
         this.height = param.height ?? 32*50;
         this.layer;
-        this.startFrac = 1.0; //start value for tile
         this.endParam; //end param for constructing other next chunk
     }
 
@@ -82,7 +81,6 @@ class Chunk
         this.createNewLayerHelper(tilemap, tileset);
         
         this.drawTerrainHelper({
-            startFrac: this.startFrac,
             w: this.width,
             x: this.coordX,
             y: this.coordY,
@@ -110,12 +108,10 @@ class Chunk
 
     nextChunk(prevChunk, tilemap, tileset)
     {
-        this.startFrac = prevChunk.endParam.endTileFrac;
         this.coordX = prevChunk.endCoordX() + (Chunk.debug_spacechunk ? 32*2 : 0);
 
         this.createNewLayerHelper(tilemap, tileset);
         this.drawTerrainHelper({
-            startFrac: this.startFrac,
             w: this.width,
             x: this.coordX,
             y: this.coordY,
