@@ -9,10 +9,22 @@ class ChunkLoader
         this.currid = -1;
         this.chunkTWidth = 100; //chunk width in tiles
         this.processChunkRelaxation = (this.chunkTWidth*32)/4; //dont destroy chunk immideatly, let car cross
+        this.loadedChunkLabel = []; //chunk label loaded from file
         this.chunk = [
             new Chunk('chunk1', {width: 32*this.chunkTWidth}),
             new Chunk('chunk2', {width: 32*this.chunkTWidth})
         ];//acts like a circular buffer with two chunks
+    }
+
+    /**
+     * preload chunk from file
+     */
+    preLoadChunk(scene, file = 'land_tilemap_ext.json', path = '../assets')
+    {
+        //TODO: iterate over all layers in this tilemap
+        let key = file.split('.')[0];
+        scene.load.tilemapTiledJSON(key, path + '/' + file);
+        this.loadedChunkLabel.push(key);
     }
 
     /**
@@ -35,8 +47,8 @@ class ChunkLoader
     
     setCollisonTileHelper(layer, scene)
     {
-        layer.setCollisionBetween(1, 54, true, true);
-        layer.setCollision(15, false, true);
+        layer.setCollisionBetween(1, 54, true, false);
+        layer.setCollision(15, false, false);
         scene.matter.world.convertTilemapLayer(layer);
     }
 
@@ -44,7 +56,7 @@ class ChunkLoader
     initChunkLoader(scene, tilemap, tileset)
     {
         this.currid = 0;
-        this.chunk[0].initChunk(tilemap, tileset);
+        this.chunk[0].initChunk(tilemap, tileset, this.loadedChunkLabel[0]);
         this.chunk[1].nextChunk(this.chunk[0], tilemap, tileset);
 
         this.setCollisonTileHelper(this.chunk[0].layer, scene);
@@ -59,7 +71,8 @@ class ChunkLoader
         if(vehicleCoordX > this.chunk[this.currid].endCoordX() + this.processChunkRelaxation)
         {    
             this.chunk[this.currid].destroyChunk(); //left most chunk
-            this.chunk[this.currid].nextChunk(this.chunk[1-this.currid], tilemap, tileset); //put left chunk on right most side
+            
+            this.chunk[this.currid].nextChunk(this.chunk[1-this.currid], tilemap, tileset, this.loadedChunkLabel[0]); //put left chunk on right most side
             this.setCollisonTileHelper(this.chunk[this.currid].layer, scene);
 
             this.currid = 1-this.currid; //change chunk index

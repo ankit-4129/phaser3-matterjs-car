@@ -54,14 +54,12 @@ function drawTerrain(stepMap, layer, param)
         amp: param.amp ?? tileSize*10, //amplitude
         wl: param.wl ?? tileSize*5, //wavelength
         cummCoord: param.cummCoord ?? 0, //cummulative 'p'
-        startCurr: param.startCurr ?? 0, //start curr 'curr'
         upperBound: param.upperBound ?? tileSize*20, // how many tiles above can terrain go,
         lowerBound: param.lowerBound ?? tileSize*20, //how many tiles below can terrain go
     };
 
     //return this paramaeters for creating next continuouse chunk
     let endParam = {
-        endCurr: 0, // 'curr'
         cummCoord : 0, // 'p',
         tileCount: 0, //total tiles placed in this function call, Note: total tiles => absolute width of chunk in tile coords
     };
@@ -88,10 +86,10 @@ function drawTerrain(stepMap, layer, param)
         console.log(terrainV);
     
     let yCoordOffset = param.y + param.h/2;
-    let p = param.cummCoord ?? 0, curr = param.startCurr ?? 0;
     
-    let px = 0, py = p;
+    let px = 0, py = param.cummCoord ?? 0;
     
+    //TODO: parse stepMap from json File
     stepMap = {
         'fill': 15,
         '0_32_0_0': [1, 15],
@@ -107,7 +105,7 @@ function drawTerrain(stepMap, layer, param)
     };
 
     let xCoord = param.x,
-        yCoord = yCoordOffset + curr, 
+        yCoord = yCoordOffset + py, 
         yTileCount = param.h/tileSize;
     
     for(let i=0; i<terrainV.length; i++)
@@ -140,11 +138,11 @@ function drawTerrain(stepMap, layer, param)
             yTCoord = tileCoord.y;
         
         for(let j=0; j<stepMap[key].length; j++)
-            layer.putTileAt(stepMap[key][j], xTCoord, yTCoord+j);
+            layer.putTileAt(stepMap[key][j], xTCoord, yTCoord+j, false);
         
         //fill
         for(let j=stepMap[key].length; j<yTileCount-yTCoord; j++)
-            layer.putTileAt(stepMap['fill'], xTCoord, yTCoord+j);
+            layer.putTileAt(stepMap['fill'], xTCoord, yTCoord+j, false);
 
         xCoord += v[0];
         yCoord += (v[1] > 0)? v[1] : 0;
@@ -179,7 +177,6 @@ function drawTerrain(stepMap, layer, param)
         ).setDepth(99);
     }
     
-    endParam.endCurr = yCoord - yCoordOffset;
     endParam.cummCoord = py;
     endParam.tileCount = terrainV.length;
 

@@ -60,15 +60,16 @@ function preload ()
 
     this.load.image('body-img', '../assets/car_body_1.png');
     this.load.json('body', '../assets/car_body.json');
-    //tilesetFileName = 'land16x16';
-    // this.load.image(tilesetFileName, 'assets/land16x16.png');
-    // this.load.tilemapTiledJSON('tilemap', 'assets/land_tilemap16x16.json');
+    
 
     tilesetFileName = 'land_ext';
     this.load.image(tilesetFileName, '../assets/land_ext.png');
     this.load.tilemapTiledJSON('tilemap', '../assets/land_tilemap_ext.json');
 
     backgroundloader = new BackgroundLoader(this);
+    
+    chunkloader = new ChunkLoader();
+    chunkloader.preLoadChunk(this);
 }
 
 function create ()
@@ -99,7 +100,7 @@ function create ()
     map = this.make.tilemap({ key: 'tilemap'});
     tiles = map.addTilesetImage(tilesetFileName);
  
-    chunkloader = new ChunkLoader();
+    
     chunkloader.initChunkLoader(this, map, tiles);
 
 
