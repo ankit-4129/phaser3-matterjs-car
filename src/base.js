@@ -30,8 +30,7 @@ var game;
 var srand = new Phaser.Math.RandomDataGenerator();
 var graphics;
 var vehicle;
-var tilesetFileName;
-var chunkloader, map, tiles;
+var chunkloader;
 var cursors;
 var backgroundloader;
 

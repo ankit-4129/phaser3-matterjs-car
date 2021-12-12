@@ -40,7 +40,12 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
+                 "type":"string",
+                 "value":"0_32"
+                }, 
+                {
+                 "name":"stepY",
                  "type":"string",
                  "value":"0_0"
                 }]
@@ -89,9 +94,14 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"32_0"
+                 "value":"0_32"
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":"0_-32"
                 }]
         }, 
         {
@@ -138,7 +148,12 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
+                 "type":"string",
+                 "value":"0_32"
+                }, 
+                {
+                 "name":"stepY",
                  "type":"string",
                  "value":"0_32"
                 }]
@@ -191,18 +206,73 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"16_0"
+                 "value":"0_32"
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":"16_-16"
                 }]
         }, 
         {
          "id":4,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":0,
+                     "id":1,
+                     "name":"",
+                     "polygon":[
+                            {
+                             "x":0,
+                             "y":0
+                            }, 
+                            {
+                             "x":0,
+                             "y":32
+                            }, 
+                            {
+                             "x":32,
+                             "y":32
+                            }, 
+                            {
+                             "x":15.6363636363636,
+                             "y":0
+                            }],
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -249,18 +319,110 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"32_16"
+                 "value":"0_32"
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":"0_-16"
                 }]
         }, 
         {
          "id":6,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":0,
+                     "id":1,
+                     "name":"",
+                     "polygon":[
+                            {
+                             "x":0,
+                             "y":0
+                            }, 
+                            {
+                             "x":0,
+                             "y":32
+                            }, 
+                            {
+                             "x":15.6363636363636,
+                             "y":32
+                            }],
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
+                }]
+        }, 
+        {
+         "id":7,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":32,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"colliders",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -270,6 +432,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -279,6 +451,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -288,6 +470,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -297,6 +489,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -306,6 +508,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -315,6 +527,30 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
+                }]
+        }, 
+        {
+         "id":14,
+         "properties":[
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -348,7 +584,12 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
+                 "type":"string",
+                 "value":"0_32"
+                }, 
+                {
+                 "name":"stepY",
                  "type":"string",
                  "value":"16_16"
                 }]
@@ -360,15 +601,75 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
          "id":17,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":0,
+                     "id":1,
+                     "name":"",
+                     "polygon":[
+                            {
+                             "x":0,
+                             "y":0
+                            }, 
+                            {
+                             "x":32,
+                             "y":0
+                            }, 
+                            {
+                             "x":32,
+                             "y":-32
+                            }, 
+                            {
+                             "x":16.3636363636364,
+                             "y":-32
+                            }],
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":32
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -419,18 +720,69 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"0_16"
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
          "id":19,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":0,
+                     "id":1,
+                     "name":"",
+                     "polygon":[
+                            {
+                             "x":0,
+                             "y":0
+                            }, 
+                            {
+                             "x":0,
+                             "y":-32
+                            }, 
+                            {
+                             "x":-15.6363636363636,
+                             "y":0
+                            }],
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":0,
+                     "x":32,
+                     "y":32
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -477,9 +829,55 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"16_32"
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
+                }]
+        }, 
+        {
+         "id":21,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":32,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"colliders",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -489,6 +887,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -498,6 +906,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -507,6 +925,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -516,6 +944,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -525,6 +963,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -534,6 +982,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -545,9 +1003,14 @@
                  "value":false
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"x_32"
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -559,9 +1022,14 @@
                  "value":false
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"32_x"
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -616,9 +1084,14 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"48_16_1"
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -673,9 +1146,14 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"-16_16_2"
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -722,9 +1200,14 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"48_16_2"
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -734,6 +1217,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -780,45 +1273,278 @@
                  "value":true
                 }, 
                 {
-                 "name":"step",
+                 "name":"stepX",
                  "type":"string",
-                 "value":"-16_16_1"
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
          "id":35,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":0,
+                     "id":2,
+                     "name":"",
+                     "polygon":[
+                            {
+                             "x":0,
+                             "y":0
+                            }, 
+                            {
+                             "x":32,
+                             "y":0
+                            }, 
+                            {
+                             "x":32.125,
+                             "y":-9
+                            }, 
+                            {
+                             "x":23.375,
+                             "y":-7
+                            }, 
+                            {
+                             "x":6.625,
+                             "y":-11.125
+                            }, 
+                            {
+                             "x":0.125,
+                             "y":-7.875
+                            }],
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":32
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
          "id":36,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":0,
+                     "id":2,
+                     "name":"",
+                     "polygon":[
+                            {
+                             "x":0,
+                             "y":0
+                            }, 
+                            {
+                             "x":32,
+                             "y":0
+                            }, 
+                            {
+                             "x":32,
+                             "y":-14.125
+                            }, 
+                            {
+                             "x":16.25,
+                             "y":-9.125
+                            }, 
+                            {
+                             "x":0.125,
+                             "y":-14.875
+                            }],
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":32
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
          "id":37,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":0,
+                     "id":2,
+                     "name":"",
+                     "polygon":[
+                            {
+                             "x":0,
+                             "y":0
+                            }, 
+                            {
+                             "x":32,
+                             "y":0
+                            }, 
+                            {
+                             "x":31.875,
+                             "y":-8.875
+                            }, 
+                            {
+                             "x":24.5,
+                             "y":-11.25
+                            }, 
+                            {
+                             "x":0.25,
+                             "y":-7.875
+                            }],
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":32
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
          "id":38,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":0,
+                     "id":2,
+                     "name":"",
+                     "polygon":[
+                            {
+                             "x":0,
+                             "y":0
+                            }, 
+                            {
+                             "x":32,
+                             "y":0
+                            }, 
+                            {
+                             "x":32.125,
+                             "y":-9
+                            }, 
+                            {
+                             "x":28.375,
+                             "y":-10.875
+                            }, 
+                            {
+                             "x":23.625,
+                             "y":-31.625
+                            }, 
+                            {
+                             "x":7.125,
+                             "y":-31.875
+                            }, 
+                            {
+                             "x":3.375,
+                             "y":-9.25
+                            }, 
+                            {
+                             "x":0.125,
+                             "y":-8
+                            }],
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":32
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -828,6 +1554,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -837,6 +1573,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }, 
         {
@@ -846,6 +1592,16 @@
                  "name":"colliders",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"stepX",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"stepY",
+                 "type":"string",
+                 "value":""
                 }]
         }],
  "tilewidth":32,

@@ -22,7 +22,7 @@ var config = {
             gravity: {
                 y: 1
             },
-            debug: false
+            debug: true
         }
     },
 
@@ -60,15 +60,11 @@ function preload ()
 
     this.load.image('body-img', '../assets/car_body_1.png');
     this.load.json('body', '../assets/car_body.json');
-    //tilesetFileName = 'land16x16';
-    // this.load.image(tilesetFileName, 'assets/land16x16.png');
-    // this.load.tilemapTiledJSON('tilemap', 'assets/land_tilemap16x16.json');
-
-    tilesetFileName = 'land_ext';
-    this.load.image(tilesetFileName, '../assets/land_ext.png');
-    this.load.tilemapTiledJSON('tilemap', '../assets/land_tilemap_ext.json');
 
     backgroundloader = new BackgroundLoader(this);
+    
+    chunkloader = new ChunkLoader();
+    chunkloader.preLoadTileset(this);
 }
 
 function create ()
@@ -95,12 +91,8 @@ function create ()
     this.cameras.main.setZoom(1.5);
     this.cameras.main.roundPixels = true;
     
-
-    map = this.make.tilemap({ key: 'tilemap'});
-    tiles = map.addTilesetImage(tilesetFileName);
- 
-    chunkloader = new ChunkLoader();
-    chunkloader.initChunkLoader(this, map, tiles);
+    chunkloader.createTileMapSet(this);
+    chunkloader.initChunkLoader(this);
 
 
     this.matter.add.mouseSpring();
@@ -112,7 +104,7 @@ function update()
 {
     
     vehicle.processKey(cursors);
-    chunkloader.processChunk(this, map, tiles, vehicle.body.x);
+    chunkloader.processChunk(this, vehicle.body.x);
     backgroundloader.updateBackground(this, vehicle.body.x);
     
 }

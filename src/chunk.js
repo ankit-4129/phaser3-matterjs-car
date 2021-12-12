@@ -26,7 +26,7 @@ function parseTileSet(tileset)
     return map;
 }
   
- 
+
 
 class Chunk
 {
@@ -39,15 +39,57 @@ class Chunk
     constructor(label, param = {})
     {
         this.label = label;
+        this.isLoadedFromFile = false; ///is this chunk loaded from file, if yes dont delete it
         this.coordX = param.coordX ?? 0;
         this.coordY = param.coordY ?? 0;
         this.width = param.width ??  32*100;
         this.height = param.height ?? 32*50;
         this.layer;
-        this.endParam; //end param for constructing other next chunk
+        this.endParam, //end param for constructing other next chunk
+        this.targetCummCoord = undefined;
     }
 
-    debugHelper()
+    getLayerPropHelper()
+    {
+        
+    }
+
+    /**
+     * special chunk
+     * load chunk from tilemap
+     * if a chunk is already in use this will 
+     */
+    loadChunkHelper(tilemap, tileset, loadedChunkLabel)
+    {
+        if(loadedChunkLabel !== undefined)
+        {
+            ///chunk already in use, so generate proceduraly
+            if(tilemap.layers[tilemap.getLayerIndex(loadedChunkLabel)].tilemapLayer != undefined)
+            {
+                return false;
+            }
+
+            this.layer = tilemap.createLayer(loadedChunkLabel, tileset,
+                this.coordX, this.coordY
+            );
+            let layerProp = JSON.parse(this.layer.layer.properties[0].value);
+            //console.log(layerProp);
+            let cummCoord = layerProp.end - (this.height/2 + this.coordY)/32;
+            // console.log(cummCoord);
+            this.endParam = {
+                cummCoord: cummCoord*32,
+                tileCount: this.layer.layer.width
+            };
+
+            this.drawChunkBorders();
+            //return true on successful loading 
+            return true;
+        }
+        //label is undefined
+        return false;
+    }
+
+    drawChunkBorders()
     {
         if(Chunk.debug)
         {
@@ -74,9 +116,16 @@ class Chunk
         this.endParam = drawTerrain(Chunk.stepMap, this.layer, option);
     }
 
-    initChunk(tilemap, tileset)
+    
+
+    initChunk(tilemap, tileset, loadedChunkLabel = undefined)
     {
         Chunk.stepMap = Chunk.stepMap ?? parseTileSet(tileset);
+
+        this.isLoadedFromFile = this.loadChunkHelper(tilemap, tileset, loadedChunkLabel);
+        //if loaded success then return
+        if(this.isLoadedFromFile)
+            return;
 
         this.createNewLayerHelper(tilemap, tileset);
         
@@ -85,9 +134,11 @@ class Chunk
             x: this.coordX,
             y: this.coordY,
             h: this.height,
+            targetCummCoord: this.targetCummCoord,
         });
+        this.targetCummCoord = undefined;
 
-        this.debugHelper();
+        this.drawChunkBorders();
     }
 
     endCoordX()
@@ -103,12 +154,27 @@ class Chunk
                 tile.physics.matterBody.destroy();
             }
         });
-        this.layer.destroy();
+
+        //donot remove link from tilemap and set isLoadedfromFile = false
+        if(this.isLoadedFromFile)
+        {
+            this.layer.destroy(false); //clean but dont remove link
+            this.isLoadedFromFile = false;
+        }
+        else
+        {
+            this.layer.destroy();
+        }
     }
 
-    nextChunk(prevChunk, tilemap, tileset)
+    nextChunk(prevChunk, tilemap, tileset, loadedChunkLabel = undefined)
     {
         this.coordX = prevChunk.endCoordX() + (Chunk.debug_spacechunk ? 32*2 : 0);
+
+        this.isLoadedFromFile = this.loadChunkHelper(tilemap, tileset, loadedChunkLabel);
+        //if loaded success then return
+        if(this.isLoadedFromFile)
+            return;
 
         this.createNewLayerHelper(tilemap, tileset);
         this.drawTerrainHelper({
@@ -117,10 +183,11 @@ class Chunk
             y: this.coordY,
             h: this.height,
             cummCoord: prevChunk.endParam.cummCoord,
-            startCurr: prevChunk.endParam.endCurr,
+            targetCummCoord: this.targetCummCoord,
         });
+        this.targetCummCoord = undefined;
         
-        this.debugHelper();
+        this.drawChunkBorders();
     }
 
 }
