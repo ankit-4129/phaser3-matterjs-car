@@ -81,7 +81,7 @@ function drawTerrain(stepMap, layer, param)
         p = boundTerrainHelper(cummCoord, minyidx, approx, param.upperBound, param.lowerBound);
         
         cummCoord += p;
-        terrainV.push([32, p]);
+        terrainV.push(p);
 
         if(param.targetCummCoord != undefined)
         {
@@ -92,7 +92,7 @@ function drawTerrain(stepMap, layer, param)
                     p = (cummCoord - param.targetCummCoord > 0)? -16 : 16;
                     p = (cummCoord - param.targetCummCoord == 0)? 0 : p;
                     cummCoord += p;
-                    terrainV.push([32, p]);
+                    terrainV.push(p);
                 }
                 //console.log(cummCoord);
                 break;
@@ -107,21 +107,21 @@ function drawTerrain(stepMap, layer, param)
     
     let yCoordOffset = param.y + param.h/2;
     
-    let px = 0, py = param.cummCoord ?? 0;
+    let py = param.cummCoord ?? 0;
     
     //TODO: parse stepMap from json File
     stepMap = {
         'fill': 15,
-        '0_32_0_0': [1, 15],
-        '0_32_0_-32': [2, 30],
-        '0_32_0_16': [19, 15],
-        '0_32_0_32': [3, 29],
-        '0_32_0_-16': [6, 30],
-        '0_32_16_0': [4, 15],
-        '0_32_16_32': [21, 29],
-        '0_32_16_16': [16, 15],
-        '0_32_16_48': [35, 32],
-        '0_32_16_-16': [33, 31],
+        '0_0': [1, 15],
+        '0_-32': [2, 30],
+        '0_16': [19, 15],
+        '0_32': [3, 29],
+        '0_-16': [6, 30],
+        '16_0': [4, 15],
+        '16_32': [21, 29],
+        '16_16': [16, 15],
+        '16_48': [35, 32],
+        '16_-16': [33, 31],
     };
 
     let xCoord = param.x,
@@ -132,19 +132,15 @@ function drawTerrain(stepMap, layer, param)
     {
         //genration rule for this tileset
         
-        let posX = px%tileSize != 0;
         let posY = py%tileSize != 0;
         let v = terrainV[i];
-        px += v[0];
-        py += v[1];
+        py += v;
 
-        let xKey = (posX*16) + '_' + (posX*16 + v[0]);
-        let yKey = (posY*16) + '_' + (posY*16 + v[1]);
-
-        let key = xKey + '_' + yKey;
+        
+        let key = (posY*16) + '_' + (posY*16 + v);
         // console.log(key + ' ' + stepMap[key]);
-
-        yCoord += (v[1] > 0)? 0 : v[1];
+        
+        yCoord += (v > 0)? 0 : v;
         
         if(curve_debug)
         {
@@ -164,8 +160,8 @@ function drawTerrain(stepMap, layer, param)
         for(let j=stepMap[key].length; j<yTileCount-yTCoord; j++)
             layer.putTileAt(stepMap['fill'], xTCoord, yTCoord+j, false);
 
-        xCoord += v[0];
-        yCoord += (v[1] > 0)? v[1] : 0;
+        xCoord += 32;
+        yCoord += (v > 0)? v : 0;
         
     }
     
