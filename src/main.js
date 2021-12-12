@@ -12,8 +12,6 @@ var config = {
         height: screen_height,
     },
     
-    
-    
     backgroundColor: '#4488aa',
     
     physics: {
@@ -55,11 +53,11 @@ window.addEventListener('resize', () => {
 
 function preload ()
 {
-    this.load.image('wheel-img', '../assets/small_wheel.png');
-    this.load.json('wheel', '../assets/small_wheel.json');
-
-    this.load.image('body-img', '../assets/car_body_1.png');
-    this.load.json('body', '../assets/car_body.json');
+    let carfilekey = 'car1';
+    //multiatlas -> key, json file, image file folder
+    this.load.multiatlas(vehiclePartsKey, '../assets/car/carParts.json', '../assets/car');
+    //custom format for storing car
+    this.load.json(carfilekey, '../assets/car/car1.json');
 
     backgroundloader = new BackgroundLoader(this);
     
@@ -82,12 +80,10 @@ function create ()
         console.log(game.loop.actualFps);
     }, this);
 
-    ///setBounds( [x] [, y] [, width] [, height] [, thickness] [, left] [, right] [, top] [, bottom])
-    
 
     vehicle = new Vehicle(this);
     
-    this.cameras.main.startFollow(vehicle.body, true, 0.2, 0.2, -screen_width/8, screen_height/8);
+    this.cameras.main.startFollow(vehicle.mainBody, true, 0.2, 0.2, -screen_width/8, screen_height/8);
     this.cameras.main.setZoom(1.5);
     this.cameras.main.roundPixels = true;
     
@@ -104,8 +100,8 @@ function update()
 {
     
     vehicle.processKey(cursors);
-    chunkloader.processChunk(this, vehicle.body.x);
-    backgroundloader.updateBackground(this, vehicle.body.x);
+    chunkloader.processChunk(this, vehicle.mainBody.x);
+    backgroundloader.updateBackground(this, vehicle.mainBody.x);
     
 }
 

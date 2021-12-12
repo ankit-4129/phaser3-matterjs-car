@@ -1,0 +1,83 @@
+{
+	"textures": [
+		{
+			"image": "carParts-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 256,
+				"h": 50
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "car_body_2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 150,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 150,
+						"h": 50
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 150,
+						"h": 50
+					}
+				},
+				{
+					"filename": "car_body_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 75,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 75,
+						"h": 30
+					},
+					"frame": {
+						"x": 150,
+						"y": 0,
+						"w": 75,
+						"h": 30
+					}
+				},
+				{
+					"filename": "small_wheel.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 31,
+						"h": 31
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 31,
+						"h": 31
+					},
+					"frame": {
+						"x": 225,
+						"y": 0,
+						"w": 31,
+						"h": 31
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:a2b07513426b2acebc802c33baf2cd39:221b7c32c8a8ab4d8855992ca1c66c88:959a1513c87f523c22bd56eb0c0c5d05$"
+	}
+}

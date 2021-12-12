@@ -33,6 +33,7 @@ var vehicle;
 var chunkloader;
 var cursors;
 var backgroundloader;
+var vehiclePartsKey = 'carParts';
 
 
 

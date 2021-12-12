@@ -4,83 +4,63 @@
 
 class Vehicle
 {
-    constructor(scene)
+    constructor(scene, key='car1')
     {
-        var wheel_shapes = scene.cache.json.get('wheel');
-        var wheel_prop = {
-            shape: wheel_shapes.wheel,
-            restitution: 0.5,
-            density: 0.01,
-            collisionFilter:{mask:0xFFFFFFEF}, 
-            friction: 0.5
-        };
+        this.car_data; //JSON data
+        this.car_parts;// actual objects
+        this.mainBody;
         
-        var body_shapes = scene.cache.json.get('body');
-        var body_prop = {
-            shape:body_shapes.body,
-            restitution: 0.5,
-            density: 0.01,
-            collisionFilter:{category:0x10}
-        };
-        let posX = 1000, posY = 0;
+        this.spawnPosX = 600;
+        this.spawnPosY = 1200;
         
-        this.body = scene.matter.add.image(posX + 75, posY, 'body-img', 'body', body_prop);
-        this.w1 = scene.matter.add.image(posX, posY, 'wheel-img', 'wheel', wheel_prop);
-        this.w2 = scene.matter.add.image(posX + 150, posY, 'wheel-img', 'wheel', wheel_prop);
+        let posX = this.spawnPosX, posY = this.spawnPosY;
 
-        this.wheel_torque = 0.035;
-        this.stiffness = 0.04;
-        this.damping = 0.1;
-        
-        scene.matter.add.joint(this.w1, this.body, 0, this.stiffness, {
-            pointB:{x:-30,y:20},
-            //stiffness: 0.01,
-            damping: this.damping 
+        this.car_data = scene.cache.json.get(key);
+
+        this.car_data['image'].forEach(obj => {
+            this[obj] = scene.matter.add.image(
+                posX + this.car_data[obj].x, 
+                posY + this.car_data[obj].y, 
+                vehiclePartsKey,
+                this.car_data[obj].image,
+                {shape: this.car_data[obj]}
+            );
         });
-        scene.matter.add.joint(this.w1, this.body, 15, 1, {
-            pointB:{x:-15,y:20},
-            //stiffness: 0.01,
-            damping: this.damping 
+
+        this.car_data['joint'].forEach(obj => {
+            this[obj] = scene.matter.add.joint(
+                this[this.car_data[obj].bodyA],
+                this[this.car_data[obj].bodyB],
+                this.car_data[obj].length,
+                this.car_data[obj].stiffness,
+                this.car_data[obj]                
+            );
         });
-        
-        
-        scene.matter.add.joint(this.w2, this.body, 0, this.stiffness, {
-            pointB:{x:30,y:20},
-            //stiffness: 0.01,
-            damping: this.damping 
-        });
-        scene.matter.add.joint(this.w2, this.body, 15, 1, {
-            pointB:{x:15,y:20},
-            //stiffness: 0.01,
-            damping: this.damping 
-        });
+
+        this.mainBody = this[this.car_data['mainBody']];
     }
 
     processKey(kbd)
     {
-        if (kbd.left.isDown)
+        let ip = this.car_data['processKey'];
+        for(let key in ip) //keys = ["left", "right"][i]
         {
-            //this.matter.applyForce(w1, {x:-0.02, y:0});
-            this.w1.body.torque = - this.wheel_torque;
-            this.w2.body.torque = - this.wheel_torque;
-            this.body.body.torque = this.wheel_torque/2;
-            
+            for(let state in ip[key]) //state = ["isDown", "isUp"][i]
+            {
+                if(kbd[key][state]) //if key is in the state
+                {
+                    for(let part in ip[key][state]) //part = ["wheel1", "wheel2", "carbody"][i]
+                    {
+                        //TODO: use object.entries
+                        for(let prop in ip[key][state][part]) //prop = ["torque", "force"][i]
+                        {
+                            this[part]['body'][prop] = ip[key][state][part][prop];
+                        }
+                    }
+                }
+                
+            }
         }
-        else if (kbd.right.isDown)
-        {
-            //this.matter.applyForce(w1, {x:0.02, y:0});
-            this.w1.body.torque =  this.wheel_torque;
-            this.w2.body.torque =  this.wheel_torque;
-            this.body.body.torque = -this.wheel_torque/2;
-        }
-        else if (kbd.up.isDown)
-        {
-            //this.matter.applyForce(this.body, {x:0.02, y:0});
-            this.body.body.force = {x:0, y:-0.0025};
-        }
-
-
     }
-    
-    
+
 }
