@@ -23,6 +23,8 @@ class ChunkLoader
             new Chunk('chunk2', this.chunkParam)
         ];//acts like a circular buffer with two chunks
 
+        this.startingChunk; //stores detatil of spawn Chunk, this chunk is only used once at starting
+
         this.tilesetName;
         this.tilemapName;
 
@@ -58,11 +60,21 @@ class ChunkLoader
             let startCummCoord = layerProp.start - (this.chunkParam.height/2 + this.chunkParam.coordY)/32;
             let endCummCoord = layerProp.end - (this.chunkParam.height/2 + this.chunkParam.coordY)/32;
             //console.log(cummCoord);
-            this.loadedChunkLabel.push({
+            let chunkInfo = {
                 key: layer.name,
                 startCummCoord: startCummCoord*32,
                 endCummCoord: endCummCoord*32,
-            });
+                weight: layerProp.weight,
+            };
+
+            if(layerProp.weight == 0)
+            {
+                this.startingChunk = chunkInfo;
+            }
+            else
+            {
+                this.loadedChunkLabel.push(chunkInfo);
+            }
         });
         //console.log(this.loadedChunkLabel);
     }
@@ -96,8 +108,8 @@ class ChunkLoader
     initChunkLoader(scene)
     {
         this.currid = 0;
-        this.chunk[0].initChunk(this.tilemap, this.tileset, this.loadedChunkLabel[0].key);
-        // this.chunk[1].targetCummCoord = this.loadedChunkLabel[0].startCummCoord;
+        this.chunk[0].initChunk(this.tilemap, this.tileset, this.startingChunk.key);
+        
         this.chunk[1].nextChunk(this.chunk[0], this.tilemap, this.tileset);
 
         this.setCollisonTileHelper(this.chunk[0].layer, scene);
@@ -115,7 +127,7 @@ class ChunkLoader
             
             ///do srand process to find if next to next chunk is special chunk
             let upcomingChunk = undefined; //by default undefined
-            if(this.upcomingChunkCooldown && srand.frac() > 0.0)
+            if(this.upcomingChunkCooldown && srand.frac() > 0.4)
             {
                 //next to next is special chunk
                 upcomingChunk = srand.pick(this.loadedChunkLabel);

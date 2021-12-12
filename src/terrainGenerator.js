@@ -42,7 +42,7 @@ function drawTerrain(stepMap, layer, param)
 {
     var debug = false; //log on console
     var curve_debug = false; //render curve
-    var bound_debug = true; //render bound lines
+    var bound_debug = false; //render bound lines
     
     
     var tileSize = 32;
@@ -139,7 +139,7 @@ function drawTerrain(stepMap, layer, param)
         
         let key = (posY*16) + '_' + (posY*16 + v);
         // console.log(key + ' ' + stepMap[key]);
-        
+
         yCoord += (v > 0)? 0 : v;
         
         if(curve_debug)

@@ -30,7 +30,7 @@ function parseTileSet(tileset)
 
 class Chunk
 {
-    static debug = true; //chunk border
+    static debug = false; //chunk border
     static debug_spacechunk = false;
 
     static stepMap = undefined;
