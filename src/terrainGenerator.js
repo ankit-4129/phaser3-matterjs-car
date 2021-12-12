@@ -42,7 +42,7 @@ function drawTerrain(stepMap, layer, param)
 {
     var debug = false; //log on console
     var curve_debug = false; //render curve
-    var bound_debug = false; //render bound lines
+    var bound_debug = true; //render bound lines
     
     
     var tileSize = 32;
@@ -56,6 +56,7 @@ function drawTerrain(stepMap, layer, param)
         cummCoord: param.cummCoord ?? 0, //cummulative 'p'
         upperBound: param.upperBound ?? tileSize*20, // how many tiles above can terrain go,
         lowerBound: param.lowerBound ?? tileSize*20, //how many tiles below can terrain go
+        targetCummCoord: param.targetCummCoord, //cummCoord where terrain should end
     };
 
     //return this paramaeters for creating next continuouse chunk
@@ -66,7 +67,7 @@ function drawTerrain(stepMap, layer, param)
 
     
     let height = NoiseGenerator.getCurve()(param, tileSize);
-
+    
     var terrainV = [];
     //approx p to nearest slope
     for(let i=1, p, minyidx, approx = [-32, -16, 0, 16, 32], cummCoord = param.cummCoord; i<height.length; i++)
@@ -78,9 +79,28 @@ function drawTerrain(stepMap, layer, param)
                 minyidx = i;
         });
         p = boundTerrainHelper(cummCoord, minyidx, approx, param.upperBound, param.lowerBound);
+        
         cummCoord += p;
         terrainV.push([32, p]);
+
+        if(param.targetCummCoord != undefined)
+        {
+            if(Math.abs(cummCoord - param.targetCummCoord) >= 16*(height.length-i-5))
+            {
+                for(let j=i+1; j<height.length; j++)
+                {
+                    p = (cummCoord - param.targetCummCoord > 0)? -16 : 16;
+                    p = (cummCoord - param.targetCummCoord == 0)? 0 : p;
+                    cummCoord += p;
+                    terrainV.push([32, p]);
+                }
+                //console.log(cummCoord);
+                break;
+            }
+            
+        }
     }
+    
 
     if(debug)
         console.log(terrainV);

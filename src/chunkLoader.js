@@ -4,27 +4,67 @@
 
 class ChunkLoader
 {
+
     constructor()
     {
         this.currid = -1;
         this.chunkTWidth = 100; //chunk width in tiles
         this.processChunkRelaxation = (this.chunkTWidth*32)/4; //dont destroy chunk immideatly, let car cross
         this.loadedChunkLabel = []; //chunk label loaded from file
+        this.upcomingChunk = undefined;//stores randomly selected chunk label from loaded chunk
+        this.upcomingChunkCooldown = false;//two special chunk cannot be adjacent, due to continuity constraint
+        this.chunkParam = {
+            height: 32*50,
+            width: 32*this.chunkTWidth,
+            coordY: 0,
+        };
         this.chunk = [
-            new Chunk('chunk1', {width: 32*this.chunkTWidth}),
-            new Chunk('chunk2', {width: 32*this.chunkTWidth})
+            new Chunk('chunk1', this.chunkParam),
+            new Chunk('chunk2', this.chunkParam)
         ];//acts like a circular buffer with two chunks
+
+        this.tilesetName;
+        this.tilemapName;
+
+        this.tilemap;
+        this.tileset;
     }
 
     /**
      * preload chunk from file
      */
-    preLoadChunk(scene, file = 'land_tilemap_ext.json', path = '../assets')
+    preLoadTileset(scene, tilesetFile = 'land_ext.png', tilemapFile = 'land_tilemap_ext.json', path = '../assets')
     {
-        //TODO: iterate over all layers in this tilemap
-        let key = file.split('.')[0];
-        scene.load.tilemapTiledJSON(key, path + '/' + file);
-        this.loadedChunkLabel.push(key);
+        this.tilesetName = tilesetFile.split('.')[0];
+        scene.load.image(this.tilesetName, path + '/' + tilesetFile);
+                
+        this.tilemapName = tilemapFile.split('.')[0];
+        scene.load.tilemapTiledJSON(this.tilemapName, path + '/' + tilemapFile);
+    }
+
+    /**
+     * call in scene.create(), will create tileMap and tileSet
+     */
+    createTileMapSet(scene)
+    {
+        this.tilemap = scene.make.tilemap({ key: this.tilemapName });
+        this.tileset = this.tilemap.addTilesetImage(this.tilesetName);
+
+        //iterate over all layers in this tilemap and push to loadedChunkLabel
+        this.tilemap.layers.forEach(layer => {
+            //console.log(layer);
+            let layerProp = JSON.parse(layer.properties[0].value);
+            //console.log(layerProp);
+            let startCummCoord = layerProp.start - (this.chunkParam.height/2 + this.chunkParam.coordY)/32;
+            let endCummCoord = layerProp.end - (this.chunkParam.height/2 + this.chunkParam.coordY)/32;
+            //console.log(cummCoord);
+            this.loadedChunkLabel.push({
+                key: layer.name,
+                startCummCoord: startCummCoord*32,
+                endCummCoord: endCummCoord*32,
+            });
+        });
+        //console.log(this.loadedChunkLabel);
     }
 
     /**
@@ -53,11 +93,12 @@ class ChunkLoader
     }
 
     ///first time initiate chunk
-    initChunkLoader(scene, tilemap, tileset)
+    initChunkLoader(scene)
     {
         this.currid = 0;
-        this.chunk[0].initChunk(tilemap, tileset, this.loadedChunkLabel[0]);
-        this.chunk[1].nextChunk(this.chunk[0], tilemap, tileset);
+        this.chunk[0].initChunk(this.tilemap, this.tileset, this.loadedChunkLabel[0].key);
+        // this.chunk[1].targetCummCoord = this.loadedChunkLabel[0].startCummCoord;
+        this.chunk[1].nextChunk(this.chunk[0], this.tilemap, this.tileset);
 
         this.setCollisonTileHelper(this.chunk[0].layer, scene);
         this.setCollisonTileHelper(this.chunk[1].layer, scene);
@@ -66,13 +107,32 @@ class ChunkLoader
     }
 
     ///call this in update(), handle swapping chunks with help of vehicleCoords
-    processChunk(scene, tilemap, tileset, vehicleCoordX)
+    processChunk(scene, vehicleCoordX)
     {
         if(vehicleCoordX > this.chunk[this.currid].endCoordX() + this.processChunkRelaxation)
         {    
             this.chunk[this.currid].destroyChunk(); //left most chunk
             
-            this.chunk[this.currid].nextChunk(this.chunk[1-this.currid], tilemap, tileset, this.loadedChunkLabel[0]); //put left chunk on right most side
+            ///do srand process to find if next to next chunk is special chunk
+            let upcomingChunk = undefined; //by default undefined
+            if(this.upcomingChunkCooldown && srand.frac() > 0.0)
+            {
+                //next to next is special chunk
+                upcomingChunk = srand.pick(this.loadedChunkLabel);
+                //console.log(upcomingChunk);
+                //next chunk will end at start coord of next to next chunk
+                this.chunk[this.currid].targetCummCoord = upcomingChunk.startCummCoord;
+            }
+            this.upcomingChunkCooldown = !this.upcomingChunkCooldown;
+            //next chunk generation
+            this.chunk[this.currid].nextChunk(this.chunk[1-this.currid], 
+                this.tilemap, this.tileset, 
+                (this.upcomingChunk !== undefined ? this.upcomingChunk.key : undefined),
+            ); //put left chunk on right most side
+            
+            //next chunk will be special chunk
+            this.upcomingChunk = upcomingChunk;
+            
             this.setCollisonTileHelper(this.chunk[this.currid].layer, scene);
 
             this.currid = 1-this.currid; //change chunk index

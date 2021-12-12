@@ -45,10 +45,14 @@ class Chunk
         this.width = param.width ??  32*100;
         this.height = param.height ?? 32*50;
         this.layer;
-        this.endParam; //end param for constructing other next chunk
+        this.endParam, //end param for constructing other next chunk
+        this.targetCummCoord = undefined;
     }
 
-    
+    getLayerPropHelper()
+    {
+        
+    }
 
     /**
      * special chunk
@@ -130,7 +134,9 @@ class Chunk
             x: this.coordX,
             y: this.coordY,
             h: this.height,
+            targetCummCoord: this.targetCummCoord,
         });
+        this.targetCummCoord = undefined;
 
         this.drawChunkBorders();
     }
@@ -177,7 +183,9 @@ class Chunk
             y: this.coordY,
             h: this.height,
             cummCoord: prevChunk.endParam.cummCoord,
+            targetCummCoord: this.targetCummCoord,
         });
+        this.targetCummCoord = undefined;
         
         this.drawChunkBorders();
     }
