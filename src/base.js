@@ -30,6 +30,7 @@ var game;
 var srand = new Phaser.Math.RandomDataGenerator();
 var graphics;
 var vehicle;
+var vehicleKey = 'car2';
 var chunkloader;
 var cursors;
 var backgroundloader;

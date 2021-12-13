@@ -25,6 +25,8 @@ class Vehicle
                 this.car_data[obj].image,
                 {shape: this.car_data[obj]}
             );
+            //z-index
+            this[obj]['depth'] = this.car_data[obj]['depth'] ?? 0;
         });
 
         this.car_data['joint'].forEach(obj => {
