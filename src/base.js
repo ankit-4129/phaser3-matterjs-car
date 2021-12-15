@@ -35,7 +35,4 @@ var chunkloader;
 var cursors;
 var backgroundloader;
 var vehiclePartsKey = 'carParts';
-
-
-
-
+var currentScene; //current scene properties

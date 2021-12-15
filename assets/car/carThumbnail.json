@@ -1,0 +1,62 @@
+{
+	"textures": [
+		{
+			"image": "carThumbnail-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 800,
+				"h": 245
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "car1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 400,
+						"h": 245
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 400,
+						"h": 245
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 400,
+						"h": 245
+					}
+				},
+				{
+					"filename": "car2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 400,
+						"h": 245
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 400,
+						"h": 245
+					},
+					"frame": {
+						"x": 400,
+						"y": 0,
+						"w": 400,
+						"h": 245
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:616013c3a5fecd5fa39dba71a0a10d3c:9e6aa9384aab39c274241416cc5495f7:18097bbfe9958cedf53ab10f9e297f1d$"
+	}
+}
