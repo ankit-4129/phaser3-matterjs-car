@@ -17,7 +17,7 @@ class BackgroundLoader
      * @param {string} folderLoc location of floder in which all layers are present
      * @param {Array<Object>} param paramaeters for file name, and scroll factor 
      */
-    constructor(scene, folderLoc='../assets/game_background_1/layers', param = [
+    constructor(scene, folderLoc='./assets/game_background_1/layers', param = [
         {
             scrollFx: 0.0,
             fileName: 'sky.png',

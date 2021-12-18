@@ -28,9 +28,9 @@ function preloadVS()
 {
     //multiatlas -> key, json file, image file folder
     let VthumbnailKey = VSelectScene.VthumbnailKey;
-    this.load.multiatlas(VthumbnailKey, '../assets/car/carThumbnail.json', '../assets/car');
-    this.load.bitmapFont('desyrel-pink', 'assets/fonts/desyrel-pink.png', 'assets/fonts/desyrel-pink.xml');
-    this.load.image('btn-start', '../assets/button.png');
+    this.load.multiatlas(VthumbnailKey, './assets/car/carThumbnail.json', './assets/car');
+    this.load.bitmapFont('desyrel-pink', './assets/fonts/desyrel-pink.png', './assets/fonts/desyrel-pink.xml');
+    this.load.image('btn-start', './assets/button.png');
 }
 
 function createVS()
@@ -175,9 +175,9 @@ window.addEventListener('resize', () => {
 function preload ()
 {
     //multiatlas -> key, json file, image file folder
-    this.load.multiatlas(vehiclePartsKey, '../assets/car/carParts.json', '../assets/car');
+    this.load.multiatlas(vehiclePartsKey, './assets/car/carParts.json', '../assets/car');
     //custom format for storing car
-    this.load.json(vehicleKey, '../assets/car/' + vehicleKey + '.json');
+    this.load.json(vehicleKey, './assets/car/' + vehicleKey + '.json');
 
     backgroundloader = new BackgroundLoader(this);
     
