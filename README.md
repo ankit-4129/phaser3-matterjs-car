@@ -1,6 +1,7 @@
 # phaser3-matterjs-car [![](https://img.shields.io/badge/Phaser-3.55.2-blue)](https://github.com/photonstorm/phaser)
 
-A basic 1D procedurally generated terrain car game with matter physics in phaser 3.
+A basic 1D procedurally generated terrain car game with matter physics in phaser 3. <br>
+Click here to play https://ankit-4129.github.io/phaser3-matterjs-car/ <br>
 
 # How does this work
 
