@@ -35,7 +35,7 @@ class ChunkLoader
     /**
      * preload chunk from file
      */
-    preLoadTileset(scene, tilesetFile = 'land_ext.png', tilemapFile = 'land_tilemap_ext.json', path = '../assets')
+    preLoadTileset(scene, tilesetFile = 'land_ext.png', tilemapFile = 'land_tilemap_ext.json', path = './assets')
     {
         this.tilesetName = tilesetFile.split('.')[0];
         scene.load.image(this.tilesetName, path + '/' + tilesetFile);

@@ -175,7 +175,7 @@ window.addEventListener('resize', () => {
 function preload ()
 {
     //multiatlas -> key, json file, image file folder
-    this.load.multiatlas(vehiclePartsKey, './assets/car/carParts.json', '../assets/car');
+    this.load.multiatlas(vehiclePartsKey, './assets/car/carParts.json', './assets/car');
     //custom format for storing car
     this.load.json(vehicleKey, './assets/car/' + vehicleKey + '.json');
 
