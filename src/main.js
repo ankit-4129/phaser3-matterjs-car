@@ -30,6 +30,7 @@ function preloadVS()
     let VthumbnailKey = VSelectScene.VthumbnailKey;
     this.load.multiatlas(VthumbnailKey, '../assets/car/carThumbnail.json', '../assets/car');
     this.load.bitmapFont('desyrel-pink', 'assets/fonts/desyrel-pink.png', 'assets/fonts/desyrel-pink.xml');
+    this.load.image('btn-start', '../assets/button.png');
 }
 
 function createVS()
@@ -90,10 +91,12 @@ function createVS()
     });
 
     this.add.bitmapText(screen_width/2, screen_height/5, 'desyrel-pink', 'Select Car').setOrigin(0.5, 0);
-    
 
     
-    this.add.rectangle(100,100, 200, 200);
+    
+    this.add.image(screen_width/2, screen_height*2/3 - 10, 'btn-start')
+    .setOrigin(0.5, 0);
+
     this.add.bitmapText(screen_width/2, screen_height*2/3, 'desyrel-pink', 'Start')
     .setOrigin(0.5, 0)
     .setInteractive()
